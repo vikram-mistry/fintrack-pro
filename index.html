@@ -9,7 +9,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="FinTrack Pro" />
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#020617" id="metaThemeColor" />
+  
+  <!-- App Icon for iOS Home Screen - Generated dynamically as PNG -->
+  <link rel="apple-touch-icon" id="appIcon" href="" />
   
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,10 +22,130 @@
     :root {
       color-scheme: dark;
     }
+    [data-theme="light"] {
+      color-scheme: light;
+    }
     body {
       min-height: 100vh;
       background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      transition: background 0.3s ease;
+    }
+    [data-theme="light"] body {
+      background: radial-gradient(circle at top, #e0f2fe 0, #f0f9ff 55%, #ffffff 100%);
+    }
+    [data-theme="light"] .glass {
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.85), rgba(241, 245, 249, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: 0 18px 40px rgba(100, 116, 139, 0.15);
+    }
+    [data-theme="light"] .glass-soft {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 249, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      box-shadow: 0 14px 30px rgba(100, 116, 139, 0.12);
+    }
+    [data-theme="light"] .tab-glass {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+      border-top: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    [data-theme="light"] .text-slate-100 {
+      color: #1e293b;
+    }
+    [data-theme="light"] .text-slate-400 {
+      color: #64748b;
+    }
+    [data-theme="light"] .text-slate-300 {
+      color: #475569;
+    }
+    [data-theme="light"] .bg-slate-950\/70 {
+      background-color: rgba(248, 250, 252, 0.9);
+    }
+    [data-theme="light"] .border-slate-700\/80 {
+      border-color: rgba(203, 213, 225, 0.8);
+    }
+    [data-theme="light"] .bg-slate-800\/80 {
+      background-color: rgba(226, 232, 240, 0.8);
+    }
+    [data-theme="light"] .bg-slate-900 {
+      background-color: #f1f5f9;
+    }
+    [data-theme="light"] input,
+    [data-theme="light"] select {
+      color: #1e293b;
+    }
+    [data-theme="light"] input::placeholder {
+      color: #94a3b8;
+    }
+    /* Light mode - Better visibility for income/expense colors */
+    [data-theme="light"] .text-emerald-200\/90,
+    [data-theme="light"] .text-emerald-300,
+    [data-theme="light"] .text-emerald-400 {
+      color: #059669 !important;
+    }
+    [data-theme="light"] .text-rose-200\/90,
+    [data-theme="light"] .text-rose-300,
+    [data-theme="light"] .text-rose-400 {
+      color: #dc2626 !important;
+    }
+    [data-theme="light"] .text-amber-200,
+    [data-theme="light"] .text-amber-300 {
+      color: #d97706 !important;
+    }
+    [data-theme="light"] .text-sky-300 {
+      color: #0284c7 !important;
+    }
+    /* Light mode - Net Worth card text visibility */
+    [data-theme="light"] .text-slate-300\/80 {
+      color: #334155;
+    }
+    /* Light mode - Badge colors */
+    [data-theme="light"] .bg-emerald-500\/15 {
+      background-color: rgba(16, 185, 129, 0.2);
+    }
+    [data-theme="light"] .border-emerald-400\/40 {
+      border-color: rgba(16, 185, 129, 0.6);
+    }
+    [data-theme="light"] .bg-rose-500\/15 {
+      background-color: rgba(220, 38, 38, 0.2);
+    }
+    [data-theme="light"] .border-rose-400\/40 {
+      border-color: rgba(220, 38, 38, 0.6);
+    }
+    [data-theme="light"] .bg-amber-500\/20 {
+      background-color: rgba(217, 119, 6, 0.2);
+    }
+    [data-theme="light"] .border-amber-400\/40 {
+      border-color: rgba(217, 119, 6, 0.6);
+    }
+    /* Light mode - Archive section white background */
+    [data-theme="light"] .bg-slate-950\/40 {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+    }
+    /* Light mode - "This month" text visibility */
+    [data-theme="light"] .text-slate-100\/90 {
+      color: #1e293b !important;
+    }
+    /* Light mode - Add entry tabs inactive state */
+    [data-theme="light"] .bg-slate-900\/40 {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+    }
+    [data-theme="light"] .text-slate-200\/80 {
+      color: #334155 !important;
+    }
+    [data-theme="light"] .border-slate-600\/80 {
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+    /* Light mode - Expense tab active text darker */
+    [data-theme="light"] .text-rose-50 {
+      color: #7f1d1d !important;
+    }
+    /* Light mode - Income tab active text darker */
+    [data-theme="light"] .text-emerald-50 {
+      color: #065f46 !important;
+    }
+    /* Light mode - Transfer tab active text darker */
+    [data-theme="light"] .text-sky-50 {
+      color: #075985 !important;
     }
     .app-title {
       font-family: 'Outfit', sans-serif;
@@ -100,7 +223,13 @@
         <p class="text-xs uppercase tracking-[0.15em] text-slate-400 mt-0.5">Welcome back</p>
       </div>
       <button id="toggleMaskButton" class="relative h-10 w-10 rounded-full glass-soft flex items-center justify-center text-slate-100 border border-sky-400/40 shadow-lg shadow-sky-500/40 transition-all hover:scale-105">
-        <span id="maskIcon" class="text-lg leading-none">👁️</span>
+        <svg id="maskIconVisible" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <svg id="maskIconHidden" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+        </svg>
       </button>
     </header>
 
@@ -352,22 +481,16 @@
       <section data-screen="settings" class="hidden scroll-snap-start">
         <header class="flex items-center justify-between mb-3 mt-1">
           <h2 class="text-base font-semibold">Settings</h2>
-          <span class="text-[11px] text-slate-400">Configuration</span>
         </header>
         <div class="space-y-3 text-sm">
           <div class="glass rounded-3xl p-3 flex items-center justify-between">
             <div>
-              <p class="text-sm">Currency</p>
-              <p class="text-[11px] text-slate-400">Indian Rupee</p>
+              <p class="text-sm">Appearance</p>
+              <p id="themeLabel" class="text-[11px] text-slate-400">Dark mode with glass effects</p>
             </div>
-            <span class="text-xs text-slate-300 bg-slate-900/50 px-2 py-1 rounded-full border border-slate-600/70">INR</span>
-          </div>
-          <div class="glass rounded-3xl p-3 flex items-center justify-between">
-            <div>
-              <p class="text-sm">Theme</p>
-              <p class="text-[11px] text-slate-400">Liquid glass dark mode (iOS-style)</p>
-            </div>
-            <span class="text-xs text-emerald-300 bg-emerald-500/15 px-2 py-1 rounded-full border border-emerald-400/40">Active</span>
+            <button id="themeToggleBtn" class="relative w-14 h-7 rounded-full bg-slate-800 border border-slate-600/70 transition-all duration-300" title="Toggle Theme">
+              <span id="themeToggleKnob" class="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-gradient-to-r from-slate-600 to-slate-700 shadow-md transition-all duration-300 flex items-center justify-center text-xs">🌙</span>
+            </button>
           </div>
           <div class="glass rounded-3xl p-3">
             <label class="text-xs text-slate-300 mb-2 block">Month Start Date</label>
@@ -658,6 +781,53 @@
 
   <script>
     let isMasked = false;
+    let isDarkMode = true;
+    
+    // Load theme from localStorage
+    function loadTheme() {
+      const savedTheme = localStorage.getItem("fintrack_theme");
+      if (savedTheme === "light") {
+        isDarkMode = false;
+        document.documentElement.setAttribute("data-theme", "light");
+        updateThemeUI();
+      }
+    }
+    
+    function updateThemeUI() {
+      const themeLabel = document.getElementById("themeLabel");
+      const themeToggleBtn = document.getElementById("themeToggleBtn");
+      const themeToggleKnob = document.getElementById("themeToggleKnob");
+      
+      if (isDarkMode) {
+        themeLabel.textContent = "Dark mode with glass effects";
+        themeToggleBtn.classList.remove("bg-sky-500");
+        themeToggleBtn.classList.add("bg-slate-800");
+        themeToggleKnob.style.left = "2px";
+        themeToggleKnob.innerHTML = "🌙";
+        themeToggleKnob.classList.remove("bg-gradient-to-r", "from-amber-400", "to-yellow-500");
+        themeToggleKnob.classList.add("bg-gradient-to-r", "from-slate-600", "to-slate-700");
+      } else {
+        themeLabel.textContent = "Light mode with glass effects";
+        themeToggleBtn.classList.remove("bg-slate-800");
+        themeToggleBtn.classList.add("bg-sky-500");
+        themeToggleKnob.style.left = "calc(100% - 26px)";
+        themeToggleKnob.innerHTML = "☀️";
+        themeToggleKnob.classList.remove("bg-gradient-to-r", "from-slate-600", "to-slate-700");
+        themeToggleKnob.classList.add("bg-gradient-to-r", "from-amber-400", "to-yellow-500");
+      }
+    }
+    
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      document.documentElement.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+      localStorage.setItem("fintrack_theme", isDarkMode ? "dark" : "light");
+      // Update meta theme color for iOS status bar
+      document.getElementById("metaThemeColor").setAttribute("content", isDarkMode ? "#020617" : "#f0f9ff");
+      updateThemeUI();
+    }
+    
+    // Initialize theme on load
+    loadTheme();
     
     const currency = (v) => {
       if (!Number.isFinite(v)) return "₹0.00";
@@ -765,7 +935,8 @@
     // Mask/Unmask toggle
     document.getElementById("toggleMaskButton").addEventListener("click", () => {
       isMasked = !isMasked;
-      document.getElementById("maskIcon").textContent = isMasked ? "🙈" : "👁️";
+      document.getElementById("maskIconVisible").classList.toggle("hidden", isMasked);
+      document.getElementById("maskIconHidden").classList.toggle("hidden", !isMasked);
       applyMasking();
     });
 
@@ -813,8 +984,8 @@
         categoryField.classList.add("hidden");
         regularAccountField.classList.add("hidden");
         transferFields.classList.remove("hidden");
-        isRecurringInput.parentElement.classList.add("hidden");
-        recurringFields.classList.add("hidden");
+        // Keep recurring option visible for transfers now
+        isRecurringInput.parentElement.classList.remove("hidden");
       } else {
         categoryField.classList.remove("hidden");
         regularAccountField.classList.remove("hidden");
@@ -899,9 +1070,14 @@
           account: fromAcc,
           date: transferDateInput.value || new Date().toISOString().slice(0, 10),
           note: noteInput.value.trim(),
-          isRecurring: false,
+          isRecurring: isRecurringInput.checked,
           createdAt: new Date().toISOString(),
         };
+        
+        if (isRecurringInput.checked) {
+          tx.recurringType = recurringTypeInput.value;
+          tx.dueDay = parseInt(dueDayInput.value) || 1;
+        }
       } else {
         tx = {
           id: crypto.randomUUID(),
@@ -1126,7 +1302,12 @@
       recurringTx.forEach(reminder => {
         if (isDueSoon(reminder.dueDay) && !isReminderPaidThisMonth(reminder.id)) {
           const alert = document.createElement("div");
-          alert.className = "glass-soft rounded-2xl p-3 flex items-center justify-between border border-amber-400/30";
+          
+          // Different styling for income vs expense reminders
+          const isIncome = reminder.type === "income";
+          alert.className = isIncome 
+            ? "glass-soft rounded-2xl p-3 flex items-center justify-between border border-emerald-400/30"
+            : "glass-soft rounded-2xl p-3 flex items-center justify-between border border-amber-400/30";
           
           const left = document.createElement("div");
           left.className = "flex flex-col";
@@ -1135,8 +1316,8 @@
           const reminderName = reminder.note && reminder.note.trim() ? reminder.note.trim() : reminder.category;
           
           const title = document.createElement("span");
-          title.className = "text-sm font-medium text-amber-200";
-          title.textContent = `⚠️ ${reminderName} due soon`;
+          title.className = isIncome ? "text-sm font-medium text-emerald-200" : "text-sm font-medium text-amber-200";
+          title.textContent = isIncome ? `✓ ${reminderName} due soon` : `⚠️ ${reminderName} due soon`;
           
           const subtitle = document.createElement("span");
           subtitle.className = "text-[11px] text-slate-400";
@@ -1147,7 +1328,7 @@
           
           const payBtn = document.createElement("button");
           payBtn.className = "px-3 py-1.5 rounded-full text-xs font-medium bg-gradient-to-r from-emerald-400 to-emerald-500 text-slate-950 shadow-md";
-          payBtn.textContent = "Pay Now";
+          payBtn.textContent = "Add Entry";
           payBtn.onclick = () => payReminder(reminder);
           
           alert.appendChild(left);
@@ -1668,7 +1849,9 @@
         const subtitle = document.createElement("span");
         subtitle.className = "text-[11px] text-slate-400";
         
-        let subtitleText = `${tx.category} • ${tx.type === "expense" ? "Bill" : "Income"} • ${tx.account}`;
+        let typeLabel = tx.type === "expense" ? "Bill" : tx.type === "income" ? "Income" : "Transfer";
+        let accountText = tx.type === "transfer" ? `${tx.fromAccount} → ${tx.toAccount}` : tx.account;
+        let subtitleText = `${tx.category} • ${typeLabel} • ${accountText}`;
         if (tx.dueDay) {
           subtitleText += ` • Due: ${tx.dueDay}${getOrdinalSuffix(tx.dueDay)}`;
         }
@@ -1694,8 +1877,13 @@
         
         const amtDiv = document.createElement("div");
         amtDiv.className = "text-right text-sm amount-display";
-        amtDiv.textContent = (tx.type === "expense" ? "-" : "+") + currency(tx.amount);
-        amtDiv.className += tx.type === "expense" ? " text-rose-300" : " text-emerald-300";
+        if (tx.type === "transfer") {
+          amtDiv.textContent = currency(tx.amount);
+          amtDiv.className += " text-sky-300";
+        } else {
+          amtDiv.textContent = (tx.type === "expense" ? "-" : "+") + currency(tx.amount);
+          amtDiv.className += tx.type === "expense" ? " text-rose-300" : " text-emerald-300";
+        }
         
         const actionsDiv = document.createElement("div");
         actionsDiv.className = "flex gap-1 ml-2";
@@ -2226,21 +2414,16 @@
       const editTxRecurringFields = document.getElementById("editTxRecurringFields");
       const editTxRecurringContainer = document.getElementById("editTxRecurringContainer");
       
-      // Hide recurring option for transfers
-      if (tx.type === "transfer") {
-        editTxRecurringContainer.classList.add("hidden");
-        editTxRecurringFields.classList.add("hidden");
+      // Show recurring option for all transaction types now
+      editTxRecurringContainer.classList.remove("hidden");
+      editTxIsRecurring.checked = tx.isRecurring || false;
+      
+      if (tx.isRecurring) {
+        editTxRecurringFields.classList.remove("hidden");
+        document.getElementById("editTxRecurringType").value = tx.recurringType || "monthly";
+        document.getElementById("editTxDueDay").value = tx.dueDay || "";
       } else {
-        editTxRecurringContainer.classList.remove("hidden");
-        editTxIsRecurring.checked = tx.isRecurring || false;
-        
-        if (tx.isRecurring) {
-          editTxRecurringFields.classList.remove("hidden");
-          document.getElementById("editTxRecurringType").value = tx.recurringType || "monthly";
-          document.getElementById("editTxDueDay").value = tx.dueDay || "";
-        } else {
-          editTxRecurringFields.classList.add("hidden");
-        }
+        editTxRecurringFields.classList.add("hidden");
       }
       
       editTransactionModal.classList.remove("hidden");
@@ -2250,16 +2433,9 @@
     editTxType.addEventListener("change", (e) => {
       updateEditTransactionFormForType(e.target.value);
       
-      // Hide/show recurring option based on type
+      // Keep recurring option visible for all types now
       const editTxRecurringContainer = document.getElementById("editTxRecurringContainer");
-      const editTxRecurringFields = document.getElementById("editTxRecurringFields");
-      
-      if (e.target.value === "transfer") {
-        editTxRecurringContainer.classList.add("hidden");
-        editTxRecurringFields.classList.add("hidden");
-      } else {
-        editTxRecurringContainer.classList.remove("hidden");
-      }
+      editTxRecurringContainer.classList.remove("hidden");
     });
     
     // Edit Transaction Recurring checkbox handler
@@ -2314,11 +2490,22 @@
           account: fromAcc,
           date: document.getElementById("editTxDate").value,
           note: document.getElementById("editTxNote").value.trim(),
-          isRecurring: false
+          isRecurring: isRecurring
         };
-        // Remove recurring properties for transfers
-        delete state.transactions[txIndex].recurringType;
-        delete state.transactions[txIndex].dueDay;
+        
+        // Handle recurring fields for transfers
+        if (isRecurring) {
+          state.transactions[txIndex].recurringType = document.getElementById("editTxRecurringType").value;
+          state.transactions[txIndex].dueDay = parseInt(document.getElementById("editTxDueDay").value) || 1;
+        } else {
+          // Remove recurring properties if not recurring
+          delete state.transactions[txIndex].recurringType;
+          delete state.transactions[txIndex].dueDay;
+          // Also remove from reminder payments if it was previously a reminder
+          if (state.reminderPayments[id]) {
+            delete state.reminderPayments[id];
+          }
+        }
       } else {
         state.transactions[txIndex] = {
           ...state.transactions[txIndex],
@@ -2570,6 +2757,100 @@
       renderAll();
       showScreen("home");
     });
+
+    // Generate App Icon for iOS Home Screen
+    function generateAppIcon() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 180;
+      canvas.height = 180;
+      const ctx = canvas.getContext('2d');
+      
+      // Background gradient
+      const bgGradient = ctx.createLinearGradient(0, 0, 180, 180);
+      bgGradient.addColorStop(0, '#0f172a');
+      bgGradient.addColorStop(0.5, '#0f293d');
+      bgGradient.addColorStop(1, '#090918');
+      
+      // Draw rounded rectangle background
+      ctx.beginPath();
+      ctx.roundRect(0, 0, 180, 180, 40);
+      ctx.fillStyle = bgGradient;
+      ctx.fill();
+      
+      // Draw decorative coins/circles
+      // Top right coin
+      ctx.beginPath();
+      ctx.arc(140, 40, 25, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // Second coin
+      ctx.beginPath();
+      ctx.arc(150, 70, 18, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(52, 211, 153, 0.2)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(52, 211, 153, 0.4)';
+      ctx.stroke();
+      
+      // Bottom left coin
+      ctx.beginPath();
+      ctx.arc(35, 140, 20, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(167, 139, 250, 0.2)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(167, 139, 250, 0.4)';
+      ctx.stroke();
+      
+      // Rupee symbol gradient
+      const rupeeGradient = ctx.createLinearGradient(40, 50, 140, 130);
+      rupeeGradient.addColorStop(0, '#38bdf8');
+      rupeeGradient.addColorStop(0.5, '#34d399');
+      rupeeGradient.addColorStop(1, '#a78bfa');
+      
+      // Draw Rupee symbol
+      ctx.font = 'bold 90px -apple-system, BlinkMacSystemFont, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = rupeeGradient;
+      ctx.fillText('₹', 90, 85);
+      
+      // Draw decorative bars below
+      const barGradient = ctx.createLinearGradient(50, 140, 130, 160);
+      barGradient.addColorStop(0, '#38bdf8');
+      barGradient.addColorStop(0.5, '#34d399');
+      barGradient.addColorStop(1, '#a78bfa');
+      
+      ctx.beginPath();
+      ctx.roundRect(60, 140, 60, 8, 4);
+      ctx.fillStyle = barGradient;
+      ctx.globalAlpha = 0.6;
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.roundRect(50, 154, 80, 6, 3);
+      ctx.globalAlpha = 0.4;
+      ctx.fill();
+      
+      ctx.globalAlpha = 1;
+      
+      // Convert to PNG and set as icon
+      const iconUrl = canvas.toDataURL('image/png');
+      const iconLink = document.getElementById('appIcon');
+      if (iconLink) {
+        iconLink.href = iconUrl;
+      }
+    }
+    
+    // Generate icon on load
+    generateAppIcon();
+
+    // Theme toggle button
+    document.getElementById("themeToggleBtn").addEventListener("click", toggleTheme);
+    
+    // Update theme UI on load
+    updateThemeUI();
 
     // Initialize
     updateCategoryDropdown("expense");
