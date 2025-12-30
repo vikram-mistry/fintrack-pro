@@ -1238,18 +1238,24 @@
     }
 
     function payReminder(reminder) {
-      const tx = {
+      let tx = {
         id: crypto.randomUUID(),
         type: reminder.type,
         amount: reminder.amount,
         category: reminder.category,
         account: reminder.account,
         date: new Date().toISOString().slice(0, 10),
-        note: `Payment for ${reminder.category} reminder`,
+        note: reminder.note || reminder.category,  // Use original note or category as fallback
         isRecurring: false,
         paidFromReminder: reminder.id,
         createdAt: new Date().toISOString(),
       };
+      
+      // Handle transfer type - include fromAccount and toAccount
+      if (reminder.type === "transfer") {
+        tx.fromAccount = reminder.fromAccount;
+        tx.toAccount = reminder.toAccount;
+      }
       
       state.transactions.unshift(tx);
       markReminderPaid(reminder.id);
