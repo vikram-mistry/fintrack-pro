@@ -147,6 +147,19 @@
     [data-theme="light"] .text-sky-50 {
       color: #075985 !important;
     }
+    /* Header background styles */
+    .header-bg {
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.98), rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.7));
+    }
+    [data-theme="light"] .header-bg {
+      background: linear-gradient(to bottom, rgba(240, 249, 255, 0.98), rgba(240, 249, 255, 0.95), rgba(240, 249, 255, 0.8)) !important;
+    }
+    /* Light mode - Go to top button */
+    [data-theme="light"] #goToTopBtn {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(14, 165, 233, 0.5);
+      color: #0284c7;
+    }
     .app-title {
       font-family: 'Outfit', sans-serif;
       background: linear-gradient(135deg, #38bdf8 0%, #34d399 50%, #a78bfa 100%);
@@ -205,10 +218,18 @@
       filter: blur(8px);
       user-select: none;
     }
+    /* Ensure proper scroll behavior on iOS */
+    #screenContainer {
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Bottom nav fixed height for consistent spacing */
+    nav.tab-glass {
+      min-height: 80px;
+    }
   </style>
 </head>
-<body class="text-slate-100 flex flex-col">
-  <div class="flex-1 flex flex-col max-w-md mx-auto w-full relative overflow-hidden">
+<body class="text-slate-100 flex flex-col h-screen overflow-hidden">
+  <div class="flex flex-col max-w-md mx-auto w-full h-full relative">
     <!-- Blurred background orbs -->
     <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       <div class="absolute -top-32 -right-24 h-72 w-72 rounded-full bg-sky-500/30 blur-3xl"></div>
@@ -216,25 +237,27 @@
       <div class="absolute top-40 -left-24 h-60 w-60 rounded-full bg-pink-500/25 blur-3xl"></div>
     </div>
 
-    <!-- Status bar spacing -->
-    <header class="ios-safe-top px-5 pt-3 pb-2 flex items-center justify-between">
-      <div>
-        <h1 class="app-title text-xl font-bold tracking-tight">FinTrack Pro</h1>
-        <p class="text-xs uppercase tracking-[0.15em] text-slate-400 mt-0.5">Welcome back</p>
+    <!-- Fixed Header -->
+    <header class="fixed top-0 left-0 right-0 z-40 ios-safe-top">
+      <div id="headerInner" class="max-w-md mx-auto px-5 pt-3 pb-2 flex items-center justify-between header-bg backdrop-blur-xl">
+        <div>
+          <h1 class="app-title text-xl font-bold tracking-tight">FinTrack Pro</h1>
+          <p class="text-xs uppercase tracking-[0.15em] text-slate-400 mt-0.5">Welcome back</p>
+        </div>
+        <button id="toggleMaskButton" class="relative h-10 w-10 rounded-full glass-soft flex items-center justify-center text-slate-100 border border-sky-400/40 shadow-lg shadow-sky-500/40 transition-all hover:scale-105">
+          <svg id="maskIconVisible" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <svg id="maskIconHidden" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+          </svg>
+        </button>
       </div>
-      <button id="toggleMaskButton" class="relative h-10 w-10 rounded-full glass-soft flex items-center justify-center text-slate-100 border border-sky-400/40 shadow-lg shadow-sky-500/40 transition-all hover:scale-105">
-        <svg id="maskIconVisible" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        <svg id="maskIconHidden" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
-        </svg>
-      </button>
     </header>
 
-    <!-- Main content area -->
-    <main id="screenContainer" class="flex-1 px-4 pb-24 ios-safe-bottom overflow-y-auto scroll-snap-y">
+    <!-- Main content area with proper spacing for fixed header and footer -->
+    <main id="screenContainer" class="flex-1 px-4 pt-20 overflow-y-auto scroll-snap-y" style="margin-top: env(safe-area-inset-top); padding-bottom: calc(120px + env(safe-area-inset-bottom));">
       <!-- HOME SCREEN -->
       <section data-screen="home" class="space-y-4 scroll-snap-start">
         <!-- Alerts Section -->
@@ -529,8 +552,14 @@
       </section>
     </main>
 
+    <!-- Go to Top Button -->
+    <button id="goToTopBtn" class="fixed z-40 hidden items-center gap-1.5 px-3 py-2 rounded-full glass-soft border border-sky-400/40 text-xs text-sky-300 hover:bg-sky-500/20 transition-all shadow-lg shadow-sky-500/30" style="bottom: calc(90px + env(safe-area-inset-bottom)); right: 16px;" onclick="scrollToTop()">
+      <span>↑</span>
+      <span>Go to top</span>
+    </button>
+
     <!-- Bottom Tab Bar -->
-    <nav class="tab-glass ios-safe-bottom fixed bottom-0 left-0 right-0">
+    <nav class="tab-glass ios-safe-bottom fixed bottom-0 left-0 right-0 z-50">
       <div class="max-w-md mx-auto px-4 pt-2 pb-4 flex items-center justify-around text-[11px]">
         <button data-tab="home" class="tabButton flex flex-col items-center gap-0.5 text-sky-300 flex-1">
           <span class="text-base">⌂</span>
@@ -828,6 +857,38 @@
     
     // Initialize theme on load
     loadTheme();
+    
+    // Scroll to top function
+    function scrollToTop() {
+      const mainContent = document.getElementById("screenContainer");
+      if (mainContent) {
+        mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+    
+    // Show/hide "Go to top" button based on scroll position and transaction count
+    function setupScrollListener() {
+      const mainContent = document.getElementById("screenContainer");
+      const goToTopBtn = document.getElementById("goToTopBtn");
+      
+      if (!mainContent || !goToTopBtn) return;
+      
+      mainContent.addEventListener('scroll', () => {
+        const scrollTop = mainContent.scrollTop;
+        const shouldShow = scrollTop > 300; // Show after scrolling 300px
+        
+        if (shouldShow) {
+          goToTopBtn.classList.remove('hidden');
+          goToTopBtn.classList.add('flex');
+        } else {
+          goToTopBtn.classList.add('hidden');
+          goToTopBtn.classList.remove('flex');
+        }
+      });
+    }
+    
+    // Initialize scroll listener
+    setupScrollListener();
     
     const currency = (v) => {
       if (!Number.isFinite(v)) return "₹0.00";
